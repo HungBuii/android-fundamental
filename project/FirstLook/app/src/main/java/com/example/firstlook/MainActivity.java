@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.new_layout);
 
         hiButton = findViewById(R.id.hiButton);
-        hiButton.setText("Hello Button");
+        hiButton.setText(R.string.button_name);
         hiButton.setTextColor(Color.BLUE);
     }
 }

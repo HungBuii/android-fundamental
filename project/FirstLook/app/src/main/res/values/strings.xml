@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FirstLook</string>
-    <string name="button_name">Hello Button</string>
+    <string name="button_name">Show Me!</string>
+    <string name="show_text">Hello there</string>
 </resources>

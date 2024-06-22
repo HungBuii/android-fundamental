@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewSeekBar = (TextView) findViewById(R.id.textViewSeekBar);
         totalBillTv = (TextView) findViewById(R.id.totalBillTextView);
 
+        Toast.makeText(getApplication(), "Hello", Toast.LENGTH_SHORT).show();
+
         calculateButton.setOnClickListener(this);
 //        calculateButton.setOnClickListener(this::onClick);
 
@@ -73,7 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
+        //TODO: Fix this code
+        // TODO: Build amazing application with this example
+
         calculate();
     }
 

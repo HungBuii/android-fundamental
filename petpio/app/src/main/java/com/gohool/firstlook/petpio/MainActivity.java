@@ -1,9 +1,8 @@
 package com.gohool.firstlook.petpio;
 
-import android.media.Image;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         catView.setOnClickListener(this);
         dogView.setOnClickListener(this);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.petBioImageViewID), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -51,11 +50,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        } // can't use switch case because error from Android Studio update
         if (v.getId() == R.id.catID)
         {
-            Toast.makeText(MainActivity.this, "Cat", Toast.LENGTH_SHORT).show();
+            // go to second activity
+            Intent catIntent = new Intent(MainActivity.this, BioActivity.class);
+            catIntent.putExtra("name", "Jarvis");
+            catIntent.putExtra("bio", "Great cat. Loves people and meows a lot!");
+            startActivity(catIntent);
+
+//            Toast.makeText(MainActivity.this, "Cat", Toast.LENGTH_SHORT).show();
         }
         else if (v.getId() == R.id.dogID)
         {
-            Toast.makeText(MainActivity.this, "Dog", Toast.LENGTH_SHORT).show();
+            // go to second activity
+            Intent dogIntent = new Intent(MainActivity.this, BioActivity.class);
+            dogIntent.putExtra("name", "Dufus");
+            dogIntent.putExtra("bio", "Great dog. Loves people barks and eat a lot!");
+            startActivity(dogIntent);
+
+//            Toast.makeText(MainActivity.this, "Dog", Toast.LENGTH_SHORT).show();
         }
     }
 }

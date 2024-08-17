@@ -22,7 +22,6 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <TextView
-        android:id="@+id/showAmountTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tax VAT:"
@@ -35,7 +34,6 @@
         app:layout_constraintVertical_bias="0.196" />
 
     <TextView
-        android:id="@+id/showAmountTip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tip:"
@@ -56,13 +54,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
+        app:layout_constraintTop_toBottomOf="@+id/showAmountTax"
+        app:layout_constraintVertical_bias="0.198" />
 
     <SeekBar
         android:id="@+id/taxPercent"
         android:layout_width="207dp"
         android:layout_height="22dp"
+        android:max="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.264"
@@ -74,6 +73,7 @@
         android:id="@+id/tipPercent"
         android:layout_width="215dp"
         android:layout_height="24dp"
+        android:max="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.275"
@@ -124,7 +124,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showAmountTip"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <TextView
+        android:id="@+id/showAmountTax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.791" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

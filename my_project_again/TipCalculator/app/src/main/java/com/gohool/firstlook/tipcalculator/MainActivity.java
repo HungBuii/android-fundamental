@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar _tipPercent;
     private TextView _showTipPercent;
     private Button _calculateButton;
+    private TextView _showAmountTax;
     private TextView _showAmountTip;
     private TextView _showTotalBill;
 
@@ -36,18 +37,15 @@ public class MainActivity extends AppCompatActivity {
         _tipPercent = (SeekBar) findViewById(R.id.tipPercent);
         _showTipPercent = (TextView) findViewById(R.id.showTipPercent);
         _calculateButton = (Button) findViewById(R.id.calculateButton);
+        _showAmountTax = (TextView) findViewById(R.id.showAmountTax);
         _showAmountTip = (TextView) findViewById(R.id.showAmountTip);
         _showTotalBill = (TextView) findViewById(R.id.showTotalBill);
-
-
-        // Enter your bill here:
-        float amountTip = Float.parseFloat(String.valueOf(_amountTip));
 
         // Seekbar Tax VAT Percent
         _taxPercent.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                _showTaxPercent.setText(_taxPercent.getProgress() + "%");
             }
 
             @Override
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         _tipPercent.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                _showTipPercent.setText(_tipPercent.getProgress() + "%");
             }
 
             @Override
@@ -83,9 +81,24 @@ public class MainActivity extends AppCompatActivity {
         _calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // Enter your bill here:
+                double _amountBill_ = Double.parseDouble(_amountBill.getText().toString());
+
+                // Show amount Tax
+                int resultTax = 0;
+                resultTax = (int) (_amountBill_ * _taxPercent.getProgress() / 100);
+                _showAmountTax.setText("Tax in your bill: " + String.format("%,d", resultTax) + "$");
+
                 // Show amount tip
+                int resultTip = 0;
+                resultTip = (int) (_amountBill_ * _tipPercent.getProgress() / 100);
+                _showAmountTip.setText("Your bill after tip: " + String.format("%,d", resultTip) + "$");
 
                 // Show total bill
+                int resultBill = 0;
+                resultBill = (int) (_amountBill_ + resultTax + resultTip);
+                _showTotalBill.setText("Your bill after tax and tip: " + String.format("%,d", resultBill) + "$");
             }
         });
 

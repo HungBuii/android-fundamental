@@ -32,10 +32,12 @@ public class BioActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
         if (extras != null)
         {
-            String name = extras.getString("name");
-            String bio = extras.getString("bio");
-
-            setUp(name, bio);
+//            String name = extras.getString("name");
+//            String bio = extras.getString("bio");
+//
+//            setUp(name, bio);
+            int id = extras.getInt("id");
+            setUp(id);
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.petBioImageViewID), (v, insets) -> {
@@ -45,21 +47,39 @@ public class BioActivity extends AppCompatActivity {
         });
     }
 
-    public void setUp(String name, String bio)
+//    public void setUp(String name, String bio)
+//    {
+//        if (name.equals("Dufus"))
+//        {
+//            // we show dog stuff
+//            petImageView.setImageDrawable(ContextCompat.getDrawable(BioActivity.this, R.drawable.icon_lg_dog));
+//            petBio.setText(bio);
+//            petName.setText(name);
+//        }
+//        else if (name.equals("Jarvis"))
+//        {
+//            // we show cat stuff
+//            petImageView.setImageDrawable(ContextCompat.getDrawable(BioActivity.this, R.drawable.icon_lg_cat));
+//            petBio.setText(bio);
+//            petName.setText(name);
+//        }
+//    }
+
+    public void setUp(int id)
     {
-        if (name.equals("Dufus"))
+        if (id == 2)
         {
             // we show dog stuff
             petImageView.setImageDrawable(ContextCompat.getDrawable(BioActivity.this, R.drawable.icon_lg_dog));
-            petBio.setText(bio);
-            petName.setText(name);
+            petBio.setText("Great dog. Loves people barks and eat a lot!");
+            petName.setText("Dufus");
         }
-        else if (name.equals("Jarvis"))
+        else if (id == 1)
         {
             // we show cat stuff
             petImageView.setImageDrawable(ContextCompat.getDrawable(BioActivity.this, R.drawable.icon_lg_cat));
-            petBio.setText(bio);
-            petName.setText(name);
+            petBio.setText("Great cat. Loves people and meows a lot!");
+            petName.setText("Jarvis");
         }
     }
 

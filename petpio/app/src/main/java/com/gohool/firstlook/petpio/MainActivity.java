@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         catView = (ImageView) findViewById(R.id.catID);
         dogView = (ImageView) findViewById(R.id.dogID);
 
-        catView.setOnClickListener(this);
-        dogView.setOnClickListener(this);
+        catView.setOnClickListener(v -> onClick(catView)); // Cach 1: su dung bieu thuc lambda
+        dogView.setOnClickListener(this); // Cach 2:
+                                          // this: đại diện cho đối tượng hiện tại (trong trường hợp này là Activity hoặc Fragment)
+                                          // Khi người dùng click vào dogView, phương thức onClick(View v) của đối tượng hiện tại sẽ được gọi thong qua this.
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.petBioImageViewID), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -52,8 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             // go to second activity
             Intent catIntent = new Intent(MainActivity.this, BioActivity.class);
-            catIntent.putExtra("name", "Jarvis");
-            catIntent.putExtra("bio", "Great cat. Loves people and meows a lot!");
+//            catIntent.putExtra("name", "Jarvis");
+//            catIntent.putExtra("bio", "Great cat. Loves people and meows a lot!");
+            catIntent.putExtra("id", 1);
             startActivity(catIntent);
 
 //            Toast.makeText(MainActivity.this, "Cat", Toast.LENGTH_SHORT).show();
@@ -62,8 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             // go to second activity
             Intent dogIntent = new Intent(MainActivity.this, BioActivity.class);
-            dogIntent.putExtra("name", "Dufus");
-            dogIntent.putExtra("bio", "Great dog. Loves people barks and eat a lot!");
+//            dogIntent.putExtra("name", "Dufus");
+//            dogIntent.putExtra("bio", "Great dog. Loves people barks and eat a lot!");
+            dogIntent.putExtra("id", 2);
             startActivity(dogIntent);
 
 //            Toast.makeText(MainActivity.this, "Dog", Toast.LENGTH_SHORT).show();

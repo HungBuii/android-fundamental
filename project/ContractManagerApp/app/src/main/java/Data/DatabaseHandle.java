@@ -49,7 +49,14 @@ public class DatabaseHandle extends SQLiteOpenHelper
     public void addContact(Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase(); // write data
 
-        ContentValues value = new ContentValues();
+        ContentValues value = new ContentValues(); // ContentValues là một lớp trong Android được sử dụng
+                                                   // để lưu trữ dữ liệu theo cặp key-value, tương tự
+                                                   // như một Map. Nó thường được dùng để chèn hoặc cập
+                                                   // nhật dữ liệu trong cơ sở dữ liệu SQLite.
+        if (contact.getId() != -1)
+        {
+            value.put(Util.KEY_ID, contact.getId());
+        }
         value.put(Util.KEY_NAME, contact.getName());
         value.put(Util.KEY_PHONE_NUMBER, contact.getPhoneNumber());
 
@@ -128,6 +135,39 @@ public class DatabaseHandle extends SQLiteOpenHelper
         }
 
         return contactList;
-
     }
+
+    // Update contact
+    public int updateContact(Contact contact)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Util.KEY_NAME, contact.getName());
+        values.put(Util.KEY_PHONE_NUMBER, contact.getPhoneNumber());
+
+        // update row
+        return db.update(Util.TABLE_NAME, values, Util.KEY_ID + "=?",
+                        new String[] {String.valueOf(contact.getId())});
+    }
+
+    // Delete single contact
+    public void deleteContact(Contact contact)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Util.TABLE_NAME, Util.KEY_ID + "=?",
+                new String[] {String.valueOf(contact.getId())});
+        db.close();
+    }
+
+    // Get contacts count
+    public int getContactsCount()
+    {
+        String countQuery = "SELECT * FROM " + Util.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+//        cursor.close();
+        return cursor.getCount();
+    }
+
 }

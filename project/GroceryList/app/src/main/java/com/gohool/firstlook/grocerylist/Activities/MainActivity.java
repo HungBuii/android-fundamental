@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    /*  AlertDialog.Builder được sử dụng để cấu hình dialog (phần bên trong),
+        còn AlertDialog là dialog thực tế được hiển thị trên màn hình (phần ngoài)
+        sau khi cấu hình dialog.
+    */
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private EditText groceryItem;
@@ -74,14 +78,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void createPopupDialog()
     {
-        dialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.popup, null);
+        dialogBuilder = new AlertDialog.Builder(this); // Tạo một AlertDialog.Builder để xây dựng cửa sổ popup.
+                                                              // this ở đây đại diện cho Context hiện tại (thường là một Activity).
+
+        View view = getLayoutInflater().inflate(R.layout.popup, null); //Tạo layout cho cửa sổ popup bằng cách inflate file layout R.layout.popup.
+
         groceryItem = (EditText) view.findViewById(R.id.groceryItem);
         quantity = (EditText) view.findViewById(R.id.groceryQty);
         saveButton = (Button) view.findViewById(R.id.saveButton);
 
-        dialogBuilder.setView(view);
-        dialog = dialogBuilder.create();
+        dialogBuilder.setView(view); // Thiết lập layout cho cửa sổ popup.
+        dialog = dialogBuilder.create(); // Tạo cửa sổ popup từ AlertDialog.Builder.
         dialog.show();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveGroceryToDB(View v)
     {
-
+        
     }
 
 }

@@ -69,7 +69,7 @@ public class DatabaseHandle extends SQLiteOpenHelper
     }
 
     // Get a grocery
-    private Grocery getGrocery(int id)
+    public Grocery getGrocery(int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
